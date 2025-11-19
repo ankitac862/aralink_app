@@ -19,8 +19,8 @@ import { useAuth } from '@contexts/AuthContext';
 
 const LoginScreen = ({ navigation }: NativeStackScreenProps<RootStackParamList, 'Login'>) => {
   const { login } = useAuth();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('ava@homes.com');
+  const [password, setPassword] = useState('password');
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
 
