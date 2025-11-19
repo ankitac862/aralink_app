@@ -14,6 +14,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { MaterialIcons } from '@expo/vector-icons';
 import { RootStackParamList } from '@navigation/AppNavigator';
 import { PrimaryButton } from '@components/PrimaryButton';
+import { AuthTabSwitch } from '@components/AuthTabSwitch';
 import { useAuth } from '@contexts/AuthContext';
 
 const LoginScreen = ({ navigation }: NativeStackScreenProps<RootStackParamList, 'Login'>) => {
@@ -51,16 +52,8 @@ const LoginScreen = ({ navigation }: NativeStackScreenProps<RootStackParamList, 
           </View>
           <Text style={styles.heading}>Your Rental Home, Managed.</Text>
           <View style={styles.card}>
-            <View style={styles.toggleWrapper}>
-              <Pressable style={[styles.toggleButton, styles.toggleActive]}>
-                <Text style={[styles.toggleLabel, styles.toggleLabelActive]}>Log In</Text>
-              </Pressable>
-              <Pressable
-                style={styles.toggleButton}
-                onPress={() => navigation.navigate('Signup')}
-              >
-                <Text style={styles.toggleLabel}>Sign Up</Text>
-              </Pressable>
+            <View style={styles.tabWrapper}>
+              <AuthTabSwitch active="login" onChange={(tab) => tab === 'signup' && navigation.navigate('Signup')} />
             </View>
             <Text style={styles.cardHeading}>Welcome Back</Text>
             <View style={styles.fieldGroup}>
@@ -169,32 +162,8 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 10 },
     elevation: 3,
   },
-  toggleWrapper: {
-    flexDirection: 'row',
-    backgroundColor: '#F3F4F6',
-    padding: 4,
-    borderRadius: 12,
+  tabWrapper: {
     marginBottom: 24,
-  },
-  toggleButton: {
-    flex: 1,
-    borderRadius: 10,
-    paddingVertical: 10,
-    alignItems: 'center',
-  },
-  toggleActive: {
-    backgroundColor: '#FFFFFF',
-    shadowColor: '#000000',
-    shadowOpacity: 0.05,
-    shadowRadius: 4,
-    elevation: 2,
-  },
-  toggleLabel: {
-    color: '#94A3B8',
-    fontWeight: '600',
-  },
-  toggleLabelActive: {
-    color: '#2563EB',
   },
   cardHeading: {
     fontSize: 22,

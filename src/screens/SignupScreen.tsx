@@ -14,6 +14,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '@navigation/AppNavigator';
 import { PrimaryButton } from '@components/PrimaryButton';
+import { AuthTabSwitch } from '@components/AuthTabSwitch';
 import { useAuth } from '@contexts/AuthContext';
 import { UserRole } from '@types';
 
@@ -59,6 +60,9 @@ const SignupScreen = ({ navigation }: NativeStackScreenProps<RootStackParamList,
         <ScrollView contentContainerStyle={styles.container} showsVerticalScrollIndicator={false}>
           <View style={styles.logoWrapper}>
             <MaterialIcons name="home" size={32} color="#FFFFFF" />
+          </View>
+          <View style={styles.tabWrapper}>
+            <AuthTabSwitch active="signup" onChange={(tab) => tab === 'login' && navigation.navigate('Login')} />
           </View>
           <Text style={styles.heading}>Create Your Account</Text>
           <Text style={styles.subheading}>Join our community of landlords and tenants.</Text>
@@ -177,6 +181,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 24,
+  },
+  tabWrapper: {
+    marginBottom: 20,
   },
   heading: {
     fontSize: 32,
