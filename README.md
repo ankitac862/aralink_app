@@ -9,6 +9,16 @@ npm install
 npm run start
 ```
 
+### Platform targets
+
+| Platform | Command | Notes |
+| --- | --- | --- |
+| Android | `npm run android` | Uses Expo’s native tooling; requires Android SDK/emulator. |
+| iOS | `npm run ios` | Runs on iOS simulator via Xcode; Expo handles the native iOS project scaffolding. |
+| Web | `npm run web` | Starts Expo in web mode. |
+
+The codebase is written with Expo APIs and cross-platform React Native primitives, so no additional iOS-specific shims or files are needed beyond running the command above on macOS with Xcode installed.
+
 The `start` script boots Expo (iOS, Android, or web). Because the project currently uses mock data, no backend credentials are required.
 
 ## Architecture
