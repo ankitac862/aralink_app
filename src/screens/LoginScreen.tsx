@@ -11,7 +11,7 @@ import {
   View,
 } from 'react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { MaterialIcons } from '@expo/vector-icons';
+import { FontAwesome, MaterialIcons } from '@expo/vector-icons';
 import { RootStackParamList } from '@navigation/AppNavigator';
 import { PrimaryButton } from '@components/PrimaryButton';
 import { AuthTabSwitch } from '@components/AuthTabSwitch';
@@ -34,8 +34,9 @@ const LoginScreen = ({ navigation }: NativeStackScreenProps<RootStackParamList, 
     navigation.replace('Dashboard');
   };
 
-  const SocialButton = ({ label }: { label: string }) => (
+  const SocialButton = ({ label, icon }: { label: string; icon: 'google' | 'apple' }) => (
     <Pressable style={styles.socialButton}>
+      <FontAwesome name={icon} size={18} color="#111827" style={styles.socialIcon} />
       <Text style={styles.socialButtonLabel}>{label}</Text>
     </Pressable>
   );
@@ -51,10 +52,10 @@ const LoginScreen = ({ navigation }: NativeStackScreenProps<RootStackParamList, 
             <MaterialIcons name="home" size={48} color="#2563EB" />
           </View>
           <Text style={styles.heading}>Your Rental Home, Managed.</Text>
+          <View style={styles.tabWrapper}>
+            <AuthTabSwitch active="login" onChange={(tab) => tab === 'signup' && navigation.navigate('Signup')} />
+          </View>
           <View style={styles.card}>
-            <View style={styles.tabWrapper}>
-              <AuthTabSwitch active="login" onChange={(tab) => tab === 'signup' && navigation.navigate('Signup')} />
-            </View>
             <Text style={styles.cardHeading}>Welcome Back</Text>
             <View style={styles.fieldGroup}>
               <Text style={styles.label}>Email or Phone</Text>
@@ -112,8 +113,8 @@ const LoginScreen = ({ navigation }: NativeStackScreenProps<RootStackParamList, 
               <View style={styles.divider} />
             </View>
             <View style={styles.socialWrapper}>
-              <SocialButton label="Continue with Google" />
-              <SocialButton label="Continue with Apple" />
+              <SocialButton label="Continue with Google" icon="google" />
+              <SocialButton label="Continue with Apple" icon="apple" />
             </View>
           </View>
           <Text style={styles.legalText}>
@@ -129,10 +130,10 @@ const LoginScreen = ({ navigation }: NativeStackScreenProps<RootStackParamList, 
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#F7F8FC',
+    backgroundColor: '#FFFFFF',
   },
   container: {
-    padding: 24,
+    padding: 20,
     paddingBottom: 32,
   },
   iconWrapper: {
@@ -143,27 +144,23 @@ const styles = StyleSheet.create({
     backgroundColor: '#E0EAFF',
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 16,
+    marginBottom: 12,
   },
   heading: {
     fontSize: 24,
     fontWeight: '700',
     textAlign: 'center',
     color: '#0F172A',
-    marginBottom: 24,
+    marginBottom: 18,
   },
   card: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#F5F6FA',
     borderRadius: 20,
     padding: 20,
-    shadowColor: '#0F172A',
-    shadowOpacity: 0.05,
-    shadowRadius: 20,
-    shadowOffset: { width: 0, height: 10 },
-    elevation: 3,
+    gap: 4,
   },
   tabWrapper: {
-    marginBottom: 24,
+    marginBottom: 16,
   },
   cardHeading: {
     fontSize: 22,
@@ -172,7 +169,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   fieldGroup: {
-    marginBottom: 16,
+    marginBottom: 14,
   },
   label: {
     fontSize: 14,
@@ -181,10 +178,10 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   input: {
-    backgroundColor: '#F9FAFB',
+    backgroundColor: '#FFFFFF',
     borderRadius: 12,
     borderWidth: 1,
-    borderColor: '#E2E8F0',
+    borderColor: '#E5E7EB',
     paddingHorizontal: 16,
     paddingVertical: 14,
     fontSize: 16,
@@ -204,7 +201,7 @@ const styles = StyleSheet.create({
   linkRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 16,
+    marginBottom: 18,
   },
   linkText: {
     color: '#2563EB',
@@ -213,7 +210,7 @@ const styles = StyleSheet.create({
   dividerRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginVertical: 20,
+    marginVertical: 18,
   },
   divider: {
     flex: 1,
@@ -230,10 +227,16 @@ const styles = StyleSheet.create({
   },
   socialButton: {
     borderWidth: 1,
-    borderColor: '#E2E8F0',
+    borderColor: '#E5E7EB',
     borderRadius: 12,
     paddingVertical: 14,
     alignItems: 'center',
+    backgroundColor: '#FFFFFF',
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
+  socialIcon: {
+    marginRight: 10,
   },
   socialButtonLabel: {
     fontWeight: '600',

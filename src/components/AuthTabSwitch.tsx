@@ -34,10 +34,10 @@ export const AuthTabSwitch = ({ active, onChange }: Props) => {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    backgroundColor: '#F1F5F9',
-    padding: 4,
-    borderRadius: 16,
-    gap: 4,
+    backgroundColor: '#E5E7EB',
+    padding: 2,
+    borderRadius: 14,
+    gap: 2,
   },
   tab: {
     flex: 1,
@@ -49,10 +49,10 @@ const styles = StyleSheet.create({
   tabActive: {
     backgroundColor: '#FFFFFF',
     shadowColor: '#000000',
-    shadowOpacity: 0.06,
+    shadowOpacity: 0.04,
     shadowOffset: { width: 0, height: 2 },
-    shadowRadius: 6,
-    elevation: 3,
+    shadowRadius: 4,
+    elevation: 2,
   },
   label: {
     fontWeight: '700',
